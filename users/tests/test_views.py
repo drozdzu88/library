@@ -44,10 +44,12 @@ class TestViews(TestCase):
                                                             'johny',
                                                         'password':
                                                             'johnpass'})
+        print(response.content)
 
 
         self.assertEqual(response.status_code, 302)
         self.assertTemplateUsed(response, 'account/register_done.html')
+
 
     def test_edit_POST(self):
         response = self.client.post(self.edit_url, {'first_name': 'john'})

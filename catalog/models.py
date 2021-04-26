@@ -44,15 +44,24 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
     summary = models.TextField(max_length=1000, help_text='Enter a short '
                                                           'description of the book')
+    num_of_pages = models.IntegerField(null=True, blank=False)
     isbn = models.CharField('ISBN', max_length=13, unique=True, help_text='13 znaków <a href"https://pl.wikipedia.org/wiki/Mi%C4%99dzynarodowy_znormalizowany_numer_ksi%C4%85%C5%BCki">ISBN Wiki</a>')
     genere = models.ManyToManyField(Genere, help_text='Wybierz gatunek książki')
     cover = models.ImageField(upload_to='catalog/%Y/%m/%d', blank=True)
+    language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('book-detail', args=[str(self.id)])
+
+    def display_genere(self):
+        """Create a string for the Genere. This is required to display gener
+        in Admin"""
+        return ', '.join(genere.name for genere in self.genere.all()[:3])
+
+    display_genere.short_description = 'Genere'
 
 
 class BookInstance(models.Model):

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # my apps
+    'rental.apps.RentalConfig',
     'users.apps.UsersConfig',
     'catalog.apps.CatalogConfig',
     # django apps

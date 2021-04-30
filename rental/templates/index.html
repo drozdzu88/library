@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% block title %}Biblioteka{% endblock title %}
 {% block content %}
 <h1>Biblioteka strona główna</h1>
 <p>Witaj na stronie głównej naszej biblioteki, opracowanej przez
@@ -11,5 +12,6 @@
   <li><strong>Egzemplarze:</strong> {{ num_instances }}</li>
   <li><strong>Dostępne egzemplarze:</strong> {{ num_instances_available }}</li>
   <li><strong>Autorzy:</strong> {{ num_authors }}</li>
+  <li><strong>Liczba Gatunków:</strong> {{ num_generes }}</li>
 </ul>
 {% endblock %}

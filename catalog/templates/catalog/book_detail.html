@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ book.title }}{% endblock title %}
+
+{% block content %}
+  <h1>Tytuł: {{ book.title }}</h1>
+	<img src="{{ book.cover.url }}">
+  <p><strong>Autor:</strong> <a href="">{{ book.author }}</a></p> <!-- fix this -->
+  <p><strong>Opis:</strong> {{ book.summary }}</p>
+  <p><strong>Liczba stron:</strong> {{ book.num_of_pages }}</p>
+  <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+  <p><strong>Język:</strong> {{ book.language }}</p>
+  <p><strong>Gatunek:</strong> {{ book.genere.all|join:", " }}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+  	<h4>Egzemplarze:</h4>
+
+  	{% for copy in book.bookinstance_set.all %}
+  		<hr>
+  		<p class="{% if copy.status == 'd' %}text-success{% elif copy.status == 'k' %}text-danger{% else %}text-warning{% endif %}">
+  		{{ copy.get_status_display }}
+  		</p>
+  		{% if copy.status != 'd' %}
+  			<p><strong>Do zwrotu:</strong>{{ copy.due_back }}</p>
+  		{% endif %}
+  		<p><strong>Wydawnictwo:</strong>{{ copy.imprint }}</p>
+  		<p class="text-muted"><strong>Id:</strong>{{ copy.id }}</p>
+  	{% endfor %}
+
+  </div>
+
+
+
+{% endblock %}

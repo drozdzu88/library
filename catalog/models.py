@@ -42,8 +42,8 @@ class Book(models.Model):
     """Model representing a book, but not a specific copy of book"""
     title = models.CharField(max_length=200)
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
-    summary = models.TextField(max_length=1000, help_text='Enter a short '
-                                                          'description of the book')
+    summary = models.TextField(max_length=1000, help_text='Podaj krótki opis '
+                                                          'książki.')
     num_of_pages = models.IntegerField(null=True, blank=False)
     isbn = models.CharField('ISBN', max_length=13, unique=True, help_text='13 znaków <a href"https://pl.wikipedia.org/wiki/Mi%C4%99dzynarodowy_znormalizowany_numer_ksi%C4%85%C5%BCki">ISBN Wiki</a>')
     genere = models.ManyToManyField(Genere, help_text='Wybierz gatunek książki')

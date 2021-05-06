@@ -5,7 +5,8 @@
 {% block content %}
   <h1>Tytuł: {{ book.title }}</h1>
 	<img src="{{ book.cover.url }}">
-  <p><strong>Autor:</strong> <a href="">{{ book.author }}</a></p> <!-- fix this -->
+  <p><strong>Autor:</strong> <a href="{{ book.author.get_absolute_url }}">
+		{{ book.author }}</a></p> <!-- fix this -->
   <p><strong>Opis:</strong> {{ book.summary }}</p>
   <p><strong>Liczba stron:</strong> {{ book.num_of_pages }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>

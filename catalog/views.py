@@ -1,6 +1,6 @@
 
 from django.views import generic
-from catalog.models import Book
+from catalog.models import Book, Author
 
 
 class BookListView(generic.ListView):
@@ -10,3 +10,12 @@ class BookListView(generic.ListView):
 
 class BookDetailView(generic.DetailView):
     model = Book
+
+
+class AuthorListView(generic.ListView):
+    model = Author
+    paginate_by = 20
+
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
